@@ -2,8 +2,8 @@
 
 Landing, política de privacidad, página de eliminación de cuenta y soporte de
 **yourpr**. Angular 20 con NgModules (`standalone: false`) + Tailwind 4,
-pensado para desplegarse en Vercel al lado de la app Flutter que vive en
-`../yourpr`.
+desplegado en Vercel. La app Flutter vive en su propio proyecto y se sirve bajo
+`/app/` (ver más abajo).
 
 Un producto de [Tech Solutions GT](https://www.techsolutionsgt.dev/).
 
@@ -12,11 +12,16 @@ Un producto de [Tech Solutions GT](https://www.techsolutionsgt.dev/).
 ## Arrancar
 
 ```bash
-cd web
 npm install
 npm start          # http://localhost:4200
 npm run build      # dist/web/browser
 ```
+
+> **`postcss.config.json` no es opcional.** Es lo que hace que Angular corra
+> Tailwind. Si falta, el sitio compila igual pero sale sin estilos: fuentes con
+> serifas, sin colores y sin layout, porque `styles.css` se sirve crudo y todas
+> las `var(--color-*)` quedan sin resolver. Ojo al copiar el proyecto con
+> `cp *`, que se salta los archivos ocultos.
 
 Node 20 o más nuevo.
 
@@ -96,8 +101,8 @@ miatracker.
 ```bash
 export SUPABASE_URL=https://mlpdqxpdvxhpsgspkccn.supabase.co
 export SUPABASE_ANON_KEY=tu_publishable_key
+export APP_FLUTTER=~/Desktop/Github/yourprweb/yourprweb/yourpr   # dónde está el proyecto Flutter
 
-cd web
 npm run build:todo     # compila Flutter web → public/app/ y luego Angular
 ```
 
@@ -116,14 +121,13 @@ Un solo proyecto apuntando a este directorio:
 
 | Ajuste | Valor |
 |---|---|
-| Root Directory | `web` |
+| Root Directory | la raíz del repo |
 | Framework Preset | Other |
 | Build Command | `npm run build` |
 | Output Directory | `dist/web/browser` |
 | Install Command | `npm install` |
 
-Todo eso ya está en `vercel.json`, así que normalmente basta con fijar el
-**Root Directory** a `web`.
+Todo eso ya está en `vercel.json`, así que normalmente no hay que tocar nada.
 
 Si quieres que el deploy incluya la app Flutter, cambia el build command a
 `npm run build:todo` y define `SUPABASE_URL` y `SUPABASE_ANON_KEY` como
@@ -140,7 +144,7 @@ La paleta y el logo salen de la app, no son inventados aquí:
 - Los colores replican `lib/src/core/theme/app_colors.dart`; están como tokens
   de Tailwind en `src/styles.css` (`@theme`).
 - El logo SVG de `src/app/compartido/logo.component.ts` es la misma geometría
-  de `lib/src/core/marca/yp_logo.dart`, portada de la caja de 1000×1000. Si
+  de `lib/src/core/marca/yp_logo.dart` del proyecto Flutter, portada de la caja de 1000×1000. Si
   tocas una constante en el Dart, tócala aquí también o el ícono de las tiendas
   y el del sitio dejan de coincidir.
 - Tipografías: Barlow Condensed para títulos, Inter para el cuerpo.
