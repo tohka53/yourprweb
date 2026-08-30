@@ -43,13 +43,14 @@ duplicar contenido.
 
 ### Las URLs que hay que pegar en los portales
 
-Sustituye el dominio por el definitivo:
+```
+Privacidad       https://yourprgtweb.vercel.app/privacidad
+Eliminar cuenta  https://yourprgtweb.vercel.app/eliminar-cuenta
+Soporte          https://yourprgtweb.vercel.app/soporte
+```
 
-```
-Privacidad       https://<dominio>/privacidad
-Eliminar cuenta  https://<dominio>/eliminar-cuenta
-Soporte          https://<dominio>/soporte
-```
+Y las mismas en inglés, por si algún revisor las pide así: `/privacy`,
+`/delete-account` y `/support`.
 
 ---
 
@@ -121,7 +122,7 @@ externo — al ser rewrite y no redirect el origen no cambia, así que la sesió
 Supabase sigue funcionando:
 
 ```json
-{ "source": "/app/:ruta*", "destination": "https://yourpr-app.vercel.app/:ruta*" }
+{ "source": "/app/:ruta*", "destination": "https://yourprgt-app.vercel.app/:ruta*" }
 ```
 
 Dos detalles de caché que ya están resueltos en `vercel.json`:

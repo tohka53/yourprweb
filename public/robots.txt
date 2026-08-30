@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yourpr.techsolutionsgt.dev/sitemap.xml
+Sitemap: https://yourprgtweb.vercel.app/sitemap.xml
