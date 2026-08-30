@@ -1,0 +1,15 @@
+/* Los estilos de la prosa inyectada con [innerHTML] viven en src/styles.css:
+   el HTML que entra por ahí no lleva el atributo de encapsulado de Angular. */
+
+.enlace-indice {
+  border-left: 2px solid var(--color-borde);
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    padding-left 0.2s ease;
+}
+.enlace-indice:hover {
+  border-left-color: var(--color-azul);
+  color: var(--color-blanco);
+  padding-left: 1rem;
+}

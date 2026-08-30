@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yourpr.techsolutionsgt.dev/sitemap.xml

@@ -1,0 +1,43 @@
+<div class="flex flex-wrap gap-4" [class.justify-center]="centrado">
+  <!-- App Store -->
+  <div class="group relative">
+    <span
+      class="absolute -right-2 -top-2.5 z-10 rounded-full bg-amarillo px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-negro shadow-lg shadow-amarillo/25">
+      {{ t().descarga.pronto }}
+    </span>
+    <div
+      aria-disabled="true"
+      class="flex min-w-[13.5rem] cursor-not-allowed items-center gap-3 rounded-2xl border border-borde bg-superficie px-5 py-3.5 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-blanco/35 group-hover:bg-alta">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" class="text-blanco" aria-hidden="true">
+        <path d="M17.05 12.54c-.02-2.2 1.8-3.25 1.88-3.3-1.02-1.5-2.61-1.7-3.18-1.73-1.35-.14-2.64.79-3.33.79-.69 0-1.75-.77-2.87-.75-1.48.02-2.84.86-3.6 2.18-1.53 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.25 2.74 2.2 1.1-.04 1.51-.71 2.84-.71s1.7.71 2.87.69c1.19-.02 1.94-1.08 2.66-2.14.84-1.23 1.19-2.42 1.2-2.48-.02-.01-2.3-.89-2.32-3.51ZM14.9 5.86c.6-.74 1.01-1.75.9-2.77-.87.04-1.93.58-2.56 1.31-.56.65-1.06 1.7-.93 2.69.97.08 1.97-.5 2.59-1.23Z" />
+      </svg>
+      <span class="text-left leading-tight">
+        <span class="block text-[11px] text-gris">{{ t().descarga.ios.arriba }}</span>
+        <span class="display block text-lg font-bold text-blanco">{{ t().descarga.ios.abajo }}</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Google Play -->
+  <div class="group relative">
+    <span
+      class="absolute -right-2 -top-2.5 z-10 rounded-full bg-amarillo px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-negro shadow-lg shadow-amarillo/25">
+      {{ t().descarga.pronto }}
+    </span>
+    <div
+      aria-disabled="true"
+      class="flex min-w-[13.5rem] cursor-not-allowed items-center gap-3 rounded-2xl border border-borde bg-superficie px-5 py-3.5 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-blanco/35 group-hover:bg-alta">
+      <svg width="24" height="26" viewBox="0 0 512 512" aria-hidden="true">
+        <path fill="#00C853" d="m48 32 244 244-244 204c-9-6-16-17-16-31V63c0-13 7-25 16-31Z" opacity="0.001" />
+        <path fill="#1565FF" d="M48 32c-9 6-16 18-16 31v386c0 14 7 25 16 31l219-224Z" />
+        <path fill="#00C853" d="M340 187 96 27c-9-6-19-6-27-2l-21 7 219 224Z" />
+        <path fill="#FFC400" d="m340 187 61 40c22 15 22 40 0 55l-61 40-73-75Z" />
+        <path fill="#E53935" d="M48 480c8 5 18 5 29-1l263-152-73-75Z" />
+      </svg>
+      <span class="text-left leading-tight">
+        <span class="block text-[11px] text-gris">{{ t().descarga.android.arriba }}</span>
+        <span class="display block text-lg font-bold text-blanco">{{ t().descarga.android.abajo }}</span>
+      </span>
+    </div>
+  </div>
+</div>

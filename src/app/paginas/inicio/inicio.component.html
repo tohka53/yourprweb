@@ -1,0 +1,421 @@
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section class="relative isolate overflow-hidden pt-28 pb-16 sm:pt-36 lg:pt-40 lg:pb-24">
+  <!-- Fondo: manchas de color en movimiento + rejilla -->
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
+    <div class="mancha animate-aurora -left-32 -top-40 h-[34rem] w-[34rem] bg-azul/28"></div>
+    <div class="mancha animate-aurora right-[-12rem] top-10 h-[30rem] w-[30rem] bg-verde/20 [animation-delay:-7s]"></div>
+    <div class="mancha animate-aurora bottom-[-14rem] left-1/3 h-[26rem] w-[26rem] bg-amarillo/10 [animation-delay:-14s]"></div>
+    <div class="rejilla-fondo absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_at_50%_0%,#000_10%,transparent_72%)]"></div>
+  </div>
+
+  <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8 lg:px-8">
+    <!-- Columna de texto -->
+    <div>
+      <span
+        appRevelar
+        class="inline-flex items-center gap-2 rounded-full border border-amarillo/30 bg-amarillo/8 px-3.5 py-1.5 text-xs font-bold text-amarillo">
+        <span class="relative isolate flex h-1.5 w-1.5">
+          <span class="absolute inline-flex h-full w-full rounded-full bg-amarillo opacity-75 animate-[latido_2.4s_ease-out_infinite]"></span>
+          <span class="relative isolate inline-flex h-1.5 w-1.5 rounded-full bg-amarillo"></span>
+        </span>
+        {{ t().hero.insignia }}
+      </span>
+
+      <h1 class="display mt-6 text-[3.4rem] font-extrabold leading-[0.88] tracking-tight sm:text-7xl lg:text-[5.4rem]">
+        <span appRevelar [retraso]="60" class="block text-blanco">{{ t().hero.titulo1 }}</span>
+        <span appRevelar [retraso]="150" class="block texto-degradado">{{ t().hero.titulo2 }}</span>
+      </h1>
+
+      <p appRevelar [retraso]="240" class="mt-6 max-w-lg text-lg leading-relaxed text-gris">
+        {{ t().hero.sub }}
+      </p>
+
+      <div appRevelar [retraso]="320" class="mt-8 flex flex-wrap gap-3">
+        <a
+          [routerLink]="['/']"
+          fragment="contacto"
+          class="group relative overflow-hidden rounded-full bg-gradient-to-r from-azul via-azul to-verde bg-[length:200%_auto] px-7 py-3.5 text-base font-bold text-blanco transition-all duration-500 hover:bg-right-top hover:shadow-[0_14px_44px_-12px_#1565ff]">
+          <span class="relative isolate flex items-center gap-2">
+            {{ t().hero.ctaPrincipal }}
+            <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+          </span>
+        </a>
+        <a
+          [routerLink]="['/']"
+          fragment="que-es"
+          class="rounded-full border border-borde px-7 py-3.5 text-base font-semibold text-blanco transition-all hover:border-blanco/40 hover:bg-alta">
+          {{ t().hero.ctaSecundario }}
+        </a>
+      </div>
+
+      <ul appRevelar [retraso]="400" class="mt-9 flex flex-wrap gap-2.5">
+        @for (f of t().hero.fichas; track f) {
+          <li class="rounded-full border border-borde bg-superficie/60 px-3.5 py-1.5 text-sm text-blanco/85">
+            {{ f }}
+          </li>
+        }
+      </ul>
+    </div>
+
+    <!-- Columna del teléfono -->
+    <div class="relative isolate flex justify-center lg:justify-end">
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-azul/18 blur-[100px]"></div>
+
+      <!-- Logo grande flotando detrás -->
+      <div
+        appParallax
+        [factor]="0.06"
+        aria-hidden="true"
+        class="pointer-events-none absolute -left-28 top-2 -z-10 hidden lg:block">
+        <div class="animate-flotar opacity-[0.05]">
+          <app-logo [tam]="260" [degradado]="false" acento="#ffffff" />
+        </div>
+      </div>
+
+      <div appRevelar [retraso]="180" class="animate-flotar">
+        <app-telefono />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CIFRAS ══════════════════════════ -->
+<section class="border-y border-borde bg-superficie/35">
+  <div class="mx-auto grid max-w-7xl gap-px bg-borde/60 px-0 sm:grid-cols-2 lg:grid-cols-4">
+    @for (d of t().datos; track d.titulo; let i = $index) {
+      <div appRevelar [retraso]="i * 90" class="bg-negro px-6 py-9 sm:px-8">
+        <p class="display flex items-baseline gap-1 text-5xl font-extrabold leading-none text-blanco">
+          <span appContador [hasta]="d.valor" [sufijo]="d.sufijo"></span>
+        </p>
+        <p class="mt-2 text-sm font-bold uppercase tracking-[0.14em] text-azul-suave">{{ d.titulo }}</p>
+        <p class="mt-2 text-sm leading-relaxed text-gris">{{ d.pie }}</p>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ══════════════════════════ QUÉ ES ══════════════════════════ -->
+<section id="que-es" class="relative isolate scroll-mt-20 overflow-hidden py-24 lg:py-32">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
+    <div class="mancha animate-aurora left-[-10rem] top-1/4 h-[24rem] w-[24rem] bg-verde/14 [animation-delay:-5s]"></div>
+  </div>
+
+  <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2 lg:gap-20 lg:px-8">
+    <div appRevelar>
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-azul-suave">{{ t().que.etiqueta }}</span>
+      <h2 class="display mt-3 text-4xl font-extrabold leading-[0.95] text-blanco sm:text-5xl lg:text-6xl">
+        {{ t().que.titulo }}
+      </h2>
+      <p class="mt-6 text-lg leading-relaxed text-gris">{{ t().que.p1 }}</p>
+      <p class="mt-4 text-lg leading-relaxed text-gris">{{ t().que.p2 }}</p>
+
+      <ul class="mt-8 space-y-3.5">
+        @for (p of t().que.puntos; track p; let i = $index) {
+          <li appRevelar [retraso]="120 + i * 90" class="flex items-start gap-3">
+            <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-verde/15 text-verde">
+              <app-icono nombre="check" [tam]="15" [grosor]="2.8" />
+            </span>
+            <span class="text-base text-blanco/85">{{ p }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <!-- Tarjetas apiladas que representan el flujo coach → atleta → tabla -->
+    <div appRevelar [retraso]="140" class="relative">
+      <div class="grid gap-4">
+        <div appHalo class="rounded-2xl border border-borde bg-superficie/70 p-5 backdrop-blur-sm" style="--halo:#1565ff">
+          <div class="flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-azul/15 text-azul-suave">
+              <app-icono nombre="reloj" [tam]="20" />
+            </span>
+            <div>
+              <p class="text-sm font-bold text-blanco">{{ idioma() === 'es' ? 'El coach programa' : 'The coach programs' }}</p>
+              <p class="text-xs text-gris">{{ idioma() === 'es' ? 'Warm-up · Fuerza · WOD · WOD+' : 'Warm-up · Strength · WOD · WOD+' }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div appHalo class="ml-6 rounded-2xl border border-borde bg-superficie/70 p-5 backdrop-blur-sm" style="--halo:#00c853">
+          <div class="flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-verde/15 text-verde">
+              <app-icono nombre="rayo" [tam]="20" />
+            </span>
+            <div>
+              <p class="text-sm font-bold text-blanco">{{ idioma() === 'es' ? 'El atleta sube su score' : 'The athlete logs a score' }}</p>
+              <p class="text-xs text-gris">7 + 14 · RX+ · 12:00</p>
+            </div>
+          </div>
+        </div>
+
+        <div appHalo class="ml-12 rounded-2xl border border-borde bg-superficie/70 p-5 backdrop-blur-sm" style="--halo:#ffc400">
+          <div class="flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-amarillo/15 text-amarillo">
+              <app-icono nombre="grafica" [tam]="20" />
+            </span>
+            <div class="min-w-0 flex-1">
+              <p class="text-sm font-bold text-blanco">{{ idioma() === 'es' ? 'La tabla se actualiza sola' : 'The table updates itself' }}</p>
+              <div class="mt-2.5 flex h-10 items-end gap-1.5">
+                @for (h of [46, 78, 58, 92, 68, 100, 84]; track $index) {
+                  <span
+                    class="w-full origin-bottom rounded-t bg-gradient-to-t from-azul to-verde"
+                    [style.height.%]="h"
+                    [style.animation]="'crecer-alto 0.9s cubic-bezier(.22,1,.36,1) ' + ($index * 90) + 'ms both'"></span>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ MARQUESINA ══════════════════════════ -->
+<section aria-hidden="true" class="mascara-lados select-none overflow-hidden border-y border-borde bg-superficie/30 py-6">
+  <div class="cinta">
+    @for (e of cintaDoble; track $index) {
+      <span class="display flex items-center gap-8 whitespace-nowrap px-8 text-3xl font-bold text-blanco/25 sm:text-4xl">
+        {{ e }}
+        <span class="h-1.5 w-1.5 rounded-full bg-azul/60"></span>
+      </span>
+    }
+  </div>
+  <div class="cinta cinta-lenta mt-3">
+    @for (e of cintaDoble; track $index) {
+      <span class="display flex items-center gap-8 whitespace-nowrap px-8 text-2xl font-bold text-blanco/12 sm:text-3xl">
+        {{ e }}
+        <span class="h-1 w-1 rounded-full bg-verde/50"></span>
+      </span>
+    }
+  </div>
+</section>
+
+<!-- ══════════════════════════ FUNCIONES ══════════════════════════ -->
+<section id="funciones" class="relative isolate scroll-mt-20 overflow-hidden py-24 lg:py-32">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
+    <div class="mancha animate-aurora right-[-14rem] top-1/3 h-[30rem] w-[30rem] bg-azul/16 [animation-delay:-9s]"></div>
+  </div>
+
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div appRevelar class="mx-auto max-w-2xl text-center">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-azul-suave">{{ t().publicos.etiqueta }}</span>
+      <h2 class="display mt-3 text-4xl font-extrabold leading-[0.95] text-blanco sm:text-5xl lg:text-6xl">
+        {{ t().publicos.titulo }}
+      </h2>
+      <p class="mt-4 text-lg text-gris">{{ t().publicos.sub }}</p>
+    </div>
+
+    <!-- Selector de público -->
+    <div appRevelar [retraso]="100" class="mt-11 flex justify-center">
+      <div role="tablist" class="flex w-full max-w-2xl flex-col gap-1.5 rounded-2xl border border-borde bg-superficie/60 p-1.5 backdrop-blur-md sm:flex-row">
+        @for (tab of t().publicos.tabs; track tab.id; let i = $index) {
+          <button
+            type="button"
+            role="tab"
+            [attr.aria-selected]="pestana() === i"
+            (click)="pestana.set(i)"
+            class="flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-bold transition-all duration-300"
+            [style.background]="pestana() === i ? tab.color + '1f' : 'transparent'"
+            [style.color]="pestana() === i ? tab.color : '#9AA1B1'"
+            [style.boxShadow]="pestana() === i ? 'inset 0 0 0 1px ' + tab.color + '55' : 'none'">
+            <app-icono [nombre]="$any(tab.icono)" [tam]="17" />
+            {{ tab.nombre }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Panel del público activo -->
+    @for (tab of t().publicos.tabs; track tab.id; let i = $index) {
+      @if (pestana() === i) {
+        <div role="tabpanel" class="mt-12">
+          <h3
+            class="display mx-auto max-w-2xl text-center text-2xl font-bold text-blanco sm:text-3xl"
+            [style.animation]="'entrar-vista .5s cubic-bezier(.22,1,.36,1) both'">
+            {{ tab.titulo }}
+          </h3>
+
+          <div class="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            @for (it of tab.items; track it.t; let j = $index) {
+              <article
+                appHalo
+                class="group rounded-2xl border border-borde bg-superficie/60 p-6 backdrop-blur-sm transition-transform duration-300 hover:-translate-y-1"
+                [style.--halo]="tab.color"
+                [style.animation]="'entrar-vista .55s cubic-bezier(.22,1,.36,1) ' + (j * 70) + 'ms both'">
+                <span
+                  class="display flex h-9 w-9 items-center justify-center rounded-lg text-sm font-extrabold transition-transform duration-300 group-hover:scale-110"
+                  [style.background]="tab.color + '1f'"
+                  [style.color]="tab.color">
+                  {{ j + 1 }}
+                </span>
+                <h4 class="mt-4 text-base font-bold leading-snug text-blanco">{{ it.t }}</h4>
+                <p class="mt-2 text-sm leading-relaxed text-gris">{{ it.d }}</p>
+              </article>
+            }
+          </div>
+        </div>
+      }
+    }
+  </div>
+</section>
+
+<!-- ══════════════════════════ CÓMO FUNCIONA ══════════════════════════ -->
+<section class="border-y border-borde bg-superficie/25 py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <div appRevelar class="mx-auto max-w-2xl text-center">
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-verde">{{ t().pasos.etiqueta }}</span>
+      <h2 class="display mt-3 text-4xl font-extrabold leading-[0.95] text-blanco sm:text-5xl lg:text-6xl">
+        {{ t().pasos.titulo }}
+      </h2>
+    </div>
+
+    <div class="linea-pasos relative mt-16 grid gap-12 lg:grid-cols-3 lg:gap-10">
+      @for (p of t().pasos.lista; track p.n; let i = $index) {
+        <div appRevelar [retraso]="i * 130" class="relative isolate text-center lg:text-left">
+          <span class="numero-paso display block text-7xl font-extrabold leading-none lg:text-8xl">{{ p.n }}</span>
+          <h3 class="display mt-3 text-2xl font-bold text-blanco">{{ p.t }}</h3>
+          <p class="mx-auto mt-3 max-w-sm text-base leading-relaxed text-gris lg:mx-0">{{ p.d }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ COMPETENCIAS ══════════════════════════ -->
+<section id="competencias" class="relative isolate scroll-mt-20 overflow-hidden py-24 lg:py-32">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
+    <div class="mancha animate-aurora left-1/4 top-0 h-[28rem] w-[28rem] bg-amarillo/12 [animation-delay:-3s]"></div>
+    <div class="rejilla-fondo absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_50%_50%,#000,transparent_70%)]"></div>
+  </div>
+
+  <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20 lg:px-8">
+    <div appRevelar>
+      <span class="text-xs font-bold uppercase tracking-[0.2em] text-amarillo">
+        {{ t().publicos.tabs[2].nombre }}
+      </span>
+      <h2 class="display mt-3 text-4xl font-extrabold leading-[0.95] text-blanco sm:text-5xl lg:text-6xl">
+        {{ t().publicos.tabs[2].titulo }}
+      </h2>
+
+      <div class="mt-8 space-y-5">
+        @for (it of t().publicos.tabs[2].items; track it.t; let i = $index) {
+          <div appRevelar [retraso]="100 + i * 90" class="flex items-start gap-4">
+            <span class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amarillo/12 text-amarillo">
+              <app-icono nombre="trofeo" [tam]="17" />
+            </span>
+            <div>
+              <p class="text-base font-bold text-blanco">{{ it.t }}</p>
+              <p class="mt-1 text-sm leading-relaxed text-gris">{{ it.d }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Leaderboard de ejemplo -->
+    <div appRevelar [retraso]="150" class="relative">
+      <div class="overflow-hidden rounded-3xl border border-borde bg-superficie/70 backdrop-blur-xl">
+        <div class="flex items-center justify-between border-b border-borde px-5 py-4">
+          <div>
+            <p class="display text-lg font-extrabold text-blanco">Guate Throwdown 2026</p>
+            <p class="text-xs text-gris">{{ idioma() === 'es' ? 'Elite femenino · General' : 'Elite women · Overall' }}</p>
+          </div>
+          <span class="flex items-center gap-1.5 rounded-full bg-verde/12 px-2.5 py-1 text-[10px] font-bold text-verde">
+            <span class="h-1.5 w-1.5 rounded-full bg-verde animate-brillo"></span>
+            {{ idioma() === 'es' ? 'EN VIVO' : 'LIVE' }}
+          </span>
+        </div>
+
+        <div class="grid grid-cols-[2rem_1fr_repeat(3,2.6rem)_3rem] gap-2 border-b border-borde/60 px-5 py-2.5 text-[10px] font-bold uppercase tracking-wider text-gris">
+          <span>#</span><span>{{ idioma() === 'es' ? 'Atleta' : 'Athlete' }}</span>
+          <span class="text-center">W1</span><span class="text-center">W2</span><span class="text-center">W3</span>
+          <span class="text-right">{{ idioma() === 'es' ? 'Total' : 'Total' }}</span>
+        </div>
+
+        @for (f of [
+          { p: 1, n: 'A. Villagrán', w: [100, 92, 96], t: 288 },
+          { p: 2, n: 'S. Monzón',    w: [96, 100, 88], t: 284 },
+          { p: 3, n: 'L. Ordóñez',   w: [88, 96, 92],  t: 276 },
+          { p: 4, n: 'C. Barrios',   w: [92, 85, 85],  t: 262 },
+          { p: 5, n: 'R. Franco',    w: [85, 88, 82],  t: 255 }
+        ]; track f.p; let i = $index) {
+          <div
+            appRevelar
+            [retraso]="220 + i * 85"
+            class="grid grid-cols-[2rem_1fr_repeat(3,2.6rem)_3rem] items-center gap-2 border-b border-borde/40 px-5 py-3 transition-colors last:border-0 hover:bg-alta/60">
+            <span
+              class="display flex h-6 w-6 items-center justify-center rounded-md text-xs font-extrabold"
+              [style.background]="f.p <= 3 ? (f.p === 1 ? '#FFC400' : f.p === 2 ? '#B9C0CC' : '#CD7F32') : '#1E212B'"
+              [style.color]="f.p <= 3 ? '#07080C' : '#9AA1B1'">
+              {{ f.p }}
+            </span>
+            <span class="truncate text-sm font-semibold text-blanco">{{ f.n }}</span>
+            @for (w of f.w; track $index) {
+              <span class="text-center text-xs text-gris">{{ w }}</span>
+            }
+            <span class="display text-right text-base font-extrabold text-blanco">{{ f.t }}</span>
+          </div>
+        }
+      </div>
+
+      <!-- Ficha flotante del multiplicador -->
+      <div
+        class="absolute bottom-14 -left-20 hidden animate-flotar rounded-2xl border border-amarillo/30 bg-negro/90 px-4 py-3 backdrop-blur-xl xl:block">
+        <p class="text-[10px] font-bold uppercase tracking-wider text-amarillo">RX+</p>
+        <p class="display text-xl font-extrabold text-blanco">×1.2</p>
+        <p class="text-[10px] text-gris">{{ idioma() === 'es' ? 'multiplicador' : 'multiplier' }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ DESCARGA ══════════════════════════ -->
+<section id="descarga" class="relative isolate scroll-mt-20 overflow-hidden border-y border-borde py-24 lg:py-32">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
+    <div class="mancha animate-aurora left-1/2 top-1/2 h-[36rem] w-[36rem] -translate-x-1/2 -translate-y-1/2 bg-azul/22"></div>
+  </div>
+
+  <div class="mx-auto max-w-3xl px-5 text-center lg:px-8">
+    <div appRevelar class="flex justify-center">
+      <app-logo [tam]="72" [animado]="true" />
+    </div>
+
+    <span appRevelar [retraso]="80" class="mt-7 block text-xs font-bold uppercase tracking-[0.2em] text-azul-suave">
+      {{ t().descarga.etiqueta }}
+    </span>
+    <h2 appRevelar [retraso]="120" class="display mt-3 text-4xl font-extrabold leading-[0.95] text-blanco sm:text-5xl lg:text-6xl">
+      {{ t().descarga.titulo }}
+    </h2>
+    <p appRevelar [retraso]="180" class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-gris">
+      {{ t().descarga.sub }}
+    </p>
+
+    <div appRevelar [retraso]="250" class="mt-10 flex justify-center">
+      <app-tiendas [centrado]="true" />
+    </div>
+
+    <div appRevelar [retraso]="330" class="mx-auto mt-12 max-w-xl rounded-2xl border border-borde bg-superficie/60 p-6 backdrop-blur-sm">
+      <p class="text-base leading-relaxed text-blanco/85">{{ t().descarga.nota }}</p>
+      <a
+        [routerLink]="['/']"
+        fragment="contacto"
+        class="group mt-4 inline-flex items-center gap-2 text-base font-bold text-verde transition-colors hover:text-blanco">
+        {{ t().descarga.notaCta }}
+        <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CONTACTO ══════════════════════════ -->
+<section id="contacto" class="relative isolate scroll-mt-20 overflow-hidden py-24 lg:py-32">
+  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10">
+    <div class="mancha animate-aurora right-[-10rem] bottom-0 h-[26rem] w-[26rem] bg-verde/16 [animation-delay:-11s]"></div>
+  </div>
+  <div class="mx-auto max-w-7xl px-5 lg:px-8">
+    <app-contacto />
+  </div>
+</section>

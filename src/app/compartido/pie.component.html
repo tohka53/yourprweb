@@ -1,0 +1,71 @@
+<footer class="relative overflow-hidden border-t border-borde bg-negro">
+  <!-- Resplandor tenue detrás del pie -->
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute -top-40 left-1/2 h-80 w-[46rem] -translate-x-1/2 rounded-full bg-azul/12 blur-[110px]"></div>
+
+  <div class="relative mx-auto max-w-7xl px-5 py-14 lg:px-8">
+    <div class="grid gap-10 md:grid-cols-[1.6fr_1fr_1fr_1.2fr]">
+      <div>
+        <a routerLink="/" aria-label="yourpr"><app-marca [tam]="34" /></a>
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-gris">{{ t().pie.tagline }}</p>
+      </div>
+
+      <nav aria-labelledby="pie-producto">
+        <h3 id="pie-producto" class="text-xs font-bold uppercase tracking-[0.16em] text-gris">
+          {{ t().pie.producto }}
+        </h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li><a [routerLink]="['/']" fragment="que-es" class="text-blanco/80 transition-colors hover:text-azul-suave">{{ t().nav.que }}</a></li>
+          <li><a [routerLink]="['/']" fragment="funciones" class="text-blanco/80 transition-colors hover:text-azul-suave">{{ t().nav.funciones }}</a></li>
+          <li><a [routerLink]="['/']" fragment="descarga" class="text-blanco/80 transition-colors hover:text-azul-suave">{{ t().nav.descarga }}</a></li>
+        </ul>
+      </nav>
+
+      <nav aria-labelledby="pie-legal">
+        <h3 id="pie-legal" class="text-xs font-bold uppercase tracking-[0.16em] text-gris">
+          {{ t().pie.legal }}
+        </h3>
+        <ul class="mt-4 space-y-2.5 text-sm">
+          <li><a routerLink="/privacidad" class="text-blanco/80 transition-colors hover:text-azul-suave">{{ t().pie.privacidad }}</a></li>
+          <li><a routerLink="/eliminar-cuenta" class="text-blanco/80 transition-colors hover:text-azul-suave">{{ t().pie.eliminar }}</a></li>
+          <li><a routerLink="/soporte" class="text-blanco/80 transition-colors hover:text-azul-suave">{{ t().pie.soporte }}</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h3 class="text-xs font-bold uppercase tracking-[0.16em] text-gris">{{ t().pie.contacto }}</h3>
+        <a
+          [href]="'mailto:' + correo"
+          class="mt-4 block break-all text-sm font-medium text-blanco transition-colors hover:text-verde">
+          {{ correo }}
+        </a>
+        <a
+          [routerLink]="['/']"
+          fragment="contacto"
+          class="mt-4 inline-flex items-center gap-2 rounded-full border border-borde px-4 py-2 text-sm font-semibold text-blanco transition-all hover:border-verde hover:bg-verde/10">
+          {{ t().nav.contacto }}
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col gap-3 border-t border-borde pt-7 text-sm text-gris sm:flex-row sm:items-center sm:justify-between">
+      <p>© {{ anio }} yourpr. {{ t().pie.derechos }}</p>
+      <p class="flex items-center gap-1.5">
+        {{ t().pie.hechoPor }}
+        <a
+          href="https://www.techsolutionsgt.dev/"
+          target="_blank"
+          rel="noopener"
+          class="group inline-flex items-center gap-1 font-semibold text-blanco transition-colors hover:text-azul-suave">
+          Tech Solutions GT
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+               class="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+            <path d="M7 17 17 7M9 7h8v8" />
+          </svg>
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>

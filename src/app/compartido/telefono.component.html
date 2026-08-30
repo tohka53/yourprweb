@@ -1,0 +1,150 @@
+<div class="marco">
+  <div class="pantalla">
+    <div class="isla"></div>
+
+    <!-- Barra superior de la app -->
+    <div class="flex items-center justify-between px-4 pb-2 pt-9">
+      <div class="flex items-center gap-1.5">
+        <app-logo [tam]="18" />
+        <span class="display text-sm font-extrabold text-blanco">yourpr</span>
+      </div>
+      <span class="rounded-full bg-alta px-2 py-0.5 text-[9px] font-bold tracking-wide text-gris">
+        CROSSFIT GT
+      </span>
+    </div>
+
+    <!-- Contenido -->
+    <div class="flex-1 overflow-hidden px-3.5 pt-1">
+      @switch (pantalla()) {
+        @case (0) {
+          <div class="vista">
+            <p class="text-[10px] font-bold uppercase tracking-[0.14em] text-gris">
+              {{ idioma() === 'es' ? 'Sábado 30 de agosto' : 'Saturday, August 30' }}
+            </p>
+            <h4 class="display mt-0.5 text-xl font-extrabold leading-none text-blanco">
+              {{ idioma() === 'es' ? 'Rutina de hoy' : "Today's workout" }}
+            </h4>
+
+            <div class="mt-3 space-y-2">
+              @for (b of bloques; track b.tipo; let i = $index) {
+                <div
+                  class="fila rounded-xl border border-borde bg-superficie p-2.5"
+                  [style.animationDelay]="i * 80 + 'ms'"
+                  [style.borderLeftColor]="b.color"
+                  [style.borderLeftWidth.px]="3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[9px] font-extrabold tracking-[0.12em]" [style.color]="b.color">
+                      {{ b.tipo }}
+                    </span>
+                    <span class="text-[9px] text-gris">12:00</span>
+                  </div>
+                  <p class="mt-0.5 text-[12px] font-bold text-blanco">{{ b.titulo }}</p>
+                  <p class="text-[10px] leading-snug text-gris">{{ b.detalle }}</p>
+                </div>
+              }
+            </div>
+
+            <button
+              type="button"
+              class="mt-3 w-full rounded-xl bg-gradient-to-r from-azul to-verde py-2.5 text-[12px] font-bold text-blanco">
+              {{ idioma() === 'es' ? 'Subir mi resultado' : 'Log my result' }}
+            </button>
+          </div>
+        }
+
+        @case (1) {
+          <div class="vista">
+            <p class="text-[10px] font-bold uppercase tracking-[0.14em] text-gris">AMRAP 12</p>
+            <h4 class="display mt-0.5 text-xl font-extrabold leading-none text-blanco">
+              {{ idioma() === 'es' ? 'Ranking del día' : "Today's leaderboard" }}
+            </h4>
+
+            <div class="mt-3 space-y-1.5">
+              @for (f of ranking; track f.pos; let i = $index) {
+                <div
+                  class="fila flex items-center gap-2.5 rounded-xl border border-borde bg-superficie px-2.5 py-2"
+                  [style.animationDelay]="i * 90 + 'ms'">
+                  <span
+                    class="display flex h-6 w-6 shrink-0 items-center justify-center rounded-lg text-[11px] font-extrabold"
+                    [style.background]="f.pos <= 3 ? colorPodio(f.pos) : '#1E212B'"
+                    [style.color]="f.pos <= 3 ? '#07080C' : '#9AA1B1'">
+                    {{ f.pos }}
+                  </span>
+                  <span class="min-w-0 flex-1">
+                    <span class="block truncate text-[11px] font-semibold text-blanco">{{ f.nombre }}</span>
+                    <span class="block text-[9px] text-gris">{{ f.marca }} {{ idioma() === 'es' ? 'rondas' : 'rounds' }}</span>
+                  </span>
+                  <span
+                    class="rounded px-1.5 py-0.5 text-[8px] font-extrabold"
+                    [style.color]="colorTier(f.tier)"
+                    [style.background]="colorTier(f.tier) + '22'">
+                    {{ textoTier(f.tier) }}
+                  </span>
+                  <span class="display w-7 text-right text-[13px] font-extrabold text-blanco">{{ f.pts }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        @default {
+          <div class="vista">
+            <p class="text-[10px] font-bold uppercase tracking-[0.14em] text-gris">
+              {{ idioma() === 'es' ? 'Tus marcas' : 'Your marks' }}
+            </p>
+            <h4 class="display mt-0.5 text-xl font-extrabold leading-none text-blanco">
+              {{ idioma() === 'es' ? 'Records personales' : 'Personal records' }}
+            </h4>
+
+            <div class="mt-3.5 space-y-3.5">
+              @for (r of records; track r.nombre; let i = $index) {
+                <div>
+                  <div class="flex items-baseline justify-between">
+                    <span class="text-[11px] font-semibold text-blanco">{{ r.nombre }}</span>
+                    <span class="flex items-baseline gap-1.5">
+                      <span class="display text-[15px] font-extrabold text-blanco">{{ r.valor }}</span>
+                      <span class="text-[9px] font-bold text-verde">{{ r.delta }}</span>
+                    </span>
+                  </div>
+                  <div class="mt-1.5 h-1.5 overflow-hidden rounded-full bg-alta">
+                    <div
+                      class="barra-pr h-full rounded-full bg-gradient-to-r from-azul to-verde"
+                      [style.width.%]="r.ancho"
+                      [style.animationDelay]="i * 110 + 'ms'"></div>
+                  </div>
+                </div>
+              }
+            </div>
+
+            <div class="mt-4 rounded-xl border border-amarillo/25 bg-amarillo/8 p-2.5">
+              <p class="text-[10px] font-bold text-amarillo">
+                {{ idioma() === 'es' ? '¡Nuevo PR en back squat!' : 'New back squat PR!' }}
+              </p>
+              <p class="text-[9px] text-gris">
+                {{ idioma() === 'es' ? '150 kg · hace 2 días' : '150 kg · 2 days ago' }}
+              </p>
+            </div>
+          </div>
+        }
+      }
+    </div>
+
+    <!-- Menú inferior -->
+    <div class="mt-auto flex items-center justify-around border-t border-borde bg-superficie/80 px-2 pb-5 pt-2">
+      @for (p of pestanas; track p.es; let i = $index) {
+        <button
+          type="button"
+          (click)="ir(i)"
+          class="flex flex-col items-center gap-1 px-3 py-0.5 transition-colors"
+          [class.text-azul-suave]="pantalla() === i"
+          [class.text-gris]="pantalla() !== i">
+          <span
+            class="h-1 w-1 rounded-full transition-all duration-300"
+            [class.w-5]="pantalla() === i"
+            [style.background]="pantalla() === i ? '#5B8CFF' : '#2A2E3A'"></span>
+          <span class="text-[9px] font-bold">{{ idioma() === 'es' ? p.es : p.en }}</span>
+        </button>
+      }
+    </div>
+  </div>
+</div>

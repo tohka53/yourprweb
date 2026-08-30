@@ -1,0 +1,43 @@
+/* Manchas de color del fondo. Se mueven muy despacio y con blur alto: es lo
+   que le da profundidad al negro sin cargar una imagen. */
+.mancha {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(110px);
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Cifra grande de los pasos, con el degradado de marca recortado al texto */
+.numero-paso {
+  background-image: linear-gradient(180deg, #f7f8fa 0%, #f7f8fa 40%, transparent 130%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Marquesina de ejercicios */
+.cinta {
+  display: flex;
+  width: max-content;
+  animation: var(--animate-marquesina);
+}
+.cinta-lenta {
+  animation-duration: 54s;
+  animation-direction: reverse;
+}
+
+/* Línea que une los tres pasos en escritorio */
+.linea-pasos::before {
+  content: '';
+  position: absolute;
+  top: 2.6rem;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #2a2e3a 18%, #2a2e3a 82%, transparent);
+}
+
+@media (max-width: 1023px) {
+  .linea-pasos::before { display: none; }
+}

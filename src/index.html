@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>yourpr · Rutinas, PRs y competencias de tu gimnasio</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="La programación del día, el ranking de tu box y todos tus PRs en un solo lugar. Sin hojas de cálculo ni pizarras borradas.">
+  <meta name="theme-color" content="#07080C">
+  <meta name="author" content="Tech Solutions GT">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="yourpr">
+  <meta property="og:title" content="yourpr · Rutinas, PRs y competencias de tu gimnasio">
+  <meta property="og:description" content="La programación del día, el ranking de tu box y todos tus PRs en un solo lugar.">
+  <meta property="og:image" content="/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <app-root>
+    <div class="boot"><span></span></div>
+  </app-root>
+  <style>
+    body { margin: 0; background: #07080C; }
+    .boot { position: fixed; inset: 0; display: grid; place-items: center; }
+    .boot span {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 3px solid #2A2E3A; border-top-color: #1565FF; border-right-color: #00C853;
+      animation: bootspin 1s linear infinite;
+    }
+    @keyframes bootspin { to { transform: rotate(360deg); } }
+  </style>
+</body>
+</html>

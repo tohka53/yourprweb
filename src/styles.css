@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Paleta de yourpr. Los mismos valores que lib/src/core/theme/app_colors.dart
+   en la app Flutter: si cambia uno allá, cámbialo aquí.
+--------------------------------------------------------------------------- */
+@theme {
+  --color-negro: #07080c;
+  --color-superficie: #14161d;
+  --color-alta: #1e212b;
+  --color-borde: #2a2e3a;
+  --color-blanco: #f7f8fa;
+  --color-gris: #9aa1b1;
+
+  --color-azul: #1565ff;
+  --color-azul-oscuro: #0b3fa8;
+  --color-azul-suave: #5b8cff;
+  --color-verde: #00c853;
+  --color-verde-oscuro: #00933d;
+  --color-amarillo: #ffc400;
+  --color-amarillo-oscuro: #c79600;
+  --color-rojo: #e53935;
+  --color-naranja: #ff8f00;
+
+  --font-display: "Barlow Condensed", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --animate-aurora: aurora 22s ease-in-out infinite;
+  --animate-flotar: flotar 7s ease-in-out infinite;
+  --animate-marquesina: marquesina 38s linear infinite;
+  --animate-brillo: brillo 2.6s ease-in-out infinite;
+  --animate-latido: latido 2.4s ease-out infinite;
+  --animate-girar-lento: girar 26s linear infinite;
+  --animate-paneo: paneo 9s ease infinite;
+}
+
+@keyframes aurora {
+  0%,
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+  33%  { transform: translate3d(6%, -8%, 0) scale(1.14); }
+  66%  { transform: translate3d(-7%, 5%, 0) scale(0.92); }
+}
+@keyframes flotar {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-14px); }
+}
+@keyframes marquesina {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes brillo {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 1; }
+}
+@keyframes latido {
+  0%   { transform: scale(0.85); opacity: 0.8; }
+  70%  { transform: scale(1.9);  opacity: 0; }
+  100% { transform: scale(1.9);  opacity: 0; }
+}
+@keyframes girar {
+  to { transform: rotate(360deg); }
+}
+@keyframes paneo {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@keyframes trazar {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes contador-sube {
+  from { transform: translateY(60%); opacity: 0; }
+  to   { transform: translateY(0);   opacity: 1; }
+}
+@keyframes entrar-vista {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes crecer-alto {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+@keyframes crecer-barra {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes entrar-cinta {
+  from { transform: translateX(-120%); }
+  to   { transform: translateX(0); }
+}
+
+/* --------------------------------------------------------------------------
+   Base
+-------------------------------------------------------------------------- */
+@layer base {
+  :root {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    background-color: var(--color-negro);
+    color: var(--color-blanco);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+
+  h1, h2, h3, .display {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--color-azul);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-negro); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-borde);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: #3a4051; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-azul-suave);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Utilidades de marca
+-------------------------------------------------------------------------- */
+@utility texto-degradado {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-azul-suave) 0%,
+    var(--color-azul) 35%,
+    var(--color-verde) 78%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: var(--animate-paneo);
+}
+
+@utility borde-vidrio {
+  background: color-mix(in oklab, var(--color-superficie) 82%, transparent);
+  border: 1px solid var(--color-borde);
+  backdrop-filter: blur(14px);
+}
+
+@utility rejilla-fondo {
+  background-image:
+    linear-gradient(to right, rgba(154, 161, 177, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(154, 161, 177, 0.07) 1px, transparent 1px);
+  background-size: 58px 58px;
+}
+
+/* Aparición al hacer scroll. La directiva appRevelar añade .visible. */
+.revelar {
+  opacity: 0;
+  transform: translateY(26px) scale(0.985);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.revelar.visible {
+  opacity: 1;
+  transform: none;
+}
+.revelar-izq  { transform: translateX(-40px); }
+.revelar-der  { transform: translateX(40px); }
+.revelar-zoom { transform: scale(0.9); }
+
+/* Tarjeta con halo que sigue al puntero */
+.tarjeta-halo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.tarjeta-halo::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in oklab, var(--halo, #1565ff) 26%, transparent),
+    transparent 62%
+  );
+}
+.tarjeta-halo:hover::before { opacity: 1; }
+
+.mascara-lados {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .revelar { opacity: 1; transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Prosa legal. El contenido de /privacidad, /eliminar-cuenta y /soporte se
+   pinta con [innerHTML], y a ese HTML no le llega el atributo de scope de
+   Angular: por eso estas reglas van aquí y no en el CSS del componente.
+-------------------------------------------------------------------------- */
+.prosa a {
+  color: var(--color-azul-suave);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+.prosa a:hover { color: var(--color-verde); }
+.prosa strong { color: var(--color-blanco); font-weight: 600; }

@@ -1,0 +1,143 @@
+<div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+  <div appRevelar>
+    <span class="text-xs font-bold uppercase tracking-[0.2em] text-verde">
+      {{ t().contacto.etiqueta }}
+    </span>
+    <h2 class="display mt-3 text-4xl font-extrabold leading-[0.95] text-blanco sm:text-5xl">
+      {{ t().contacto.titulo }}
+    </h2>
+    <p class="mt-4 max-w-sm text-base leading-relaxed text-gris">{{ t().contacto.sub }}</p>
+
+    <div class="mt-8 rounded-2xl border border-borde bg-superficie/60 p-5">
+      <p class="text-xs font-bold uppercase tracking-[0.14em] text-gris">
+        {{ t().contacto.otroCanal }}
+      </p>
+      <a
+        [href]="'mailto:' + correo"
+        class="mt-1.5 block break-all text-lg font-semibold text-blanco transition-colors hover:text-verde">
+        {{ correo }}
+      </a>
+    </div>
+  </div>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="enviar()"
+    novalidate
+    appRevelar
+    [retraso]="120"
+    class="rounded-3xl border border-borde bg-superficie/70 p-6 backdrop-blur-xl sm:p-8">
+    @if (estado() === 'exito') {
+      <div class="flex flex-col items-center justify-center gap-4 py-14 text-center">
+        <span class="relative flex h-16 w-16 items-center justify-center rounded-full bg-verde/15 text-verde">
+          <span class="absolute inset-0 rounded-full bg-verde/25 animate-[latido_2.4s_ease-out_infinite]"></span>
+          <app-icono nombre="check" [tam]="30" [grosor]="2.6" />
+        </span>
+        <p class="max-w-xs text-base font-medium text-blanco">{{ t().contacto.exito }}</p>
+      </div>
+    } @else {
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="block">
+          <span class="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-gris">
+            {{ t().contacto.nombre }}
+          </span>
+          <input
+            type="text"
+            formControlName="nombre"
+            [placeholder]="t().contacto.nombrePh"
+            autocomplete="name"
+            class="w-full rounded-xl border border-borde bg-negro/60 px-4 py-3 text-blanco placeholder:text-gris/60 transition-colors focus:border-azul focus:outline-none"
+            [class.border-rojo]="malo('nombre')" />
+          @if (malo('nombre')) {
+            <span class="mt-1.5 block text-xs text-rojo">{{ t().contacto.errores.nombre }}</span>
+          }
+        </label>
+
+        <label class="block">
+          <span class="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-gris">
+            {{ t().contacto.correo }}
+          </span>
+          <input
+            type="email"
+            formControlName="correo"
+            [placeholder]="t().contacto.correoPh"
+            autocomplete="email"
+            class="w-full rounded-xl border border-borde bg-negro/60 px-4 py-3 text-blanco placeholder:text-gris/60 transition-colors focus:border-azul focus:outline-none"
+            [class.border-rojo]="malo('correo')" />
+          @if (malo('correo')) {
+            <span class="mt-1.5 block text-xs text-rojo">{{ t().contacto.errores.correo }}</span>
+          }
+        </label>
+
+        <label class="block">
+          <span class="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-gris">
+            {{ t().contacto.gimnasio }}
+          </span>
+          <input
+            type="text"
+            formControlName="gimnasio"
+            [placeholder]="t().contacto.gimnasioPh"
+            autocomplete="organization"
+            class="w-full rounded-xl border border-borde bg-negro/60 px-4 py-3 text-blanco placeholder:text-gris/60 transition-colors focus:border-azul focus:outline-none" />
+        </label>
+
+        <label class="block">
+          <span class="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-gris">
+            {{ t().contacto.asunto }}
+          </span>
+          <select
+            formControlName="asunto"
+            class="w-full rounded-xl border border-borde bg-negro/60 px-4 py-3 text-blanco transition-colors focus:border-azul focus:outline-none">
+            @for (a of t().contacto.asuntos; track a) {
+              <option [value]="a" class="bg-superficie text-blanco">{{ a }}</option>
+            }
+          </select>
+        </label>
+
+        <label class="block sm:col-span-2">
+          <span class="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-gris">
+            {{ t().contacto.mensaje }}
+          </span>
+          <textarea
+            formControlName="mensaje"
+            rows="5"
+            [placeholder]="t().contacto.mensajePh"
+            class="w-full resize-y rounded-xl border border-borde bg-negro/60 px-4 py-3 text-blanco placeholder:text-gris/60 transition-colors focus:border-azul focus:outline-none"
+            [class.border-rojo]="malo('mensaje')"></textarea>
+          @if (malo('mensaje')) {
+            <span class="mt-1.5 block text-xs text-rojo">{{ t().contacto.errores.mensaje }}</span>
+          }
+        </label>
+      </div>
+
+      <!-- Honeypot: invisible para personas, irresistible para bots -->
+      <input
+        type="text"
+        formControlName="_honey"
+        tabindex="-1"
+        autocomplete="off"
+        aria-hidden="true"
+        class="absolute h-0 w-0 overflow-hidden opacity-0" />
+
+      <button
+        type="submit"
+        [disabled]="estado() === 'enviando'"
+        class="group mt-7 flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-azul via-azul to-verde bg-[length:200%_auto] px-6 py-4 text-base font-bold text-blanco transition-all duration-500 hover:bg-right-top hover:shadow-[0_10px_40px_-10px_#1565ff] disabled:cursor-wait disabled:opacity-70">
+        @if (estado() === 'enviando') {
+          <span class="h-4 w-4 animate-[girar_0.8s_linear_infinite] rounded-full border-2 border-blanco/40 border-t-blanco"></span>
+          {{ t().contacto.enviando }}
+        } @else {
+          {{ t().contacto.enviar }}
+          <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+        }
+      </button>
+
+      @if (estado() === 'error') {
+        <p class="mt-4 text-center text-sm text-rojo">
+          {{ t().contacto.error }}
+          <a [href]="'mailto:' + correo" class="font-semibold underline">{{ correo }}</a>
+        </p>
+      }
+    }
+  </form>
+</div>

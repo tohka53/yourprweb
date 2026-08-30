@@ -1,0 +1,97 @@
+<header class="barra" [class.pegado]="pegado()">
+  <div class="mx-auto flex h-16 max-w-7xl items-center gap-6 px-5 sm:h-18 lg:px-8">
+    <a routerLink="/" class="shrink-0" [attr.aria-label]="'yourpr'">
+      <app-marca [tam]="32" />
+    </a>
+
+    <!-- Navegación de escritorio -->
+    <nav class="ml-auto hidden items-center gap-1 lg:flex" aria-label="Principal">
+      @for (e of enlaces; track e.fragmento) {
+        <a
+          [routerLink]="['/']"
+          [fragment]="e.fragmento"
+          class="rounded-full px-4 py-2 text-sm font-medium text-gris transition-colors hover:bg-alta hover:text-blanco">
+          {{ t().nav[e.clave] }}
+        </a>
+      }
+    </nav>
+
+    <div class="ml-auto flex items-center gap-2 lg:ml-0">
+      <!-- Selector de idioma -->
+      <button
+        type="button"
+        (click)="alternarIdioma()"
+        [attr.aria-label]="t().nav.idioma"
+        class="group flex items-center gap-1.5 rounded-full border border-borde bg-superficie/70 px-3 py-2 text-xs font-bold tracking-wide text-gris transition-all hover:border-azul hover:text-blanco">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-500 group-hover:rotate-180">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M3 12h18M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18" />
+        </svg>
+        {{ t().etiqueta }}
+      </button>
+
+      <a
+        [routerLink]="['/']"
+        fragment="contacto"
+        class="hidden rounded-full bg-blanco px-4 py-2 text-sm font-semibold text-negro transition-transform hover:scale-[1.04] active:scale-95 sm:block">
+        {{ t().nav.contacto }}
+      </a>
+
+      <!-- Botón de menú móvil -->
+      <button
+        type="button"
+        (click)="alternarMenu()"
+        [attr.aria-label]="abierto() ? t().nav.cerrar : t().nav.menu"
+        [attr.aria-expanded]="abierto()"
+        class="flex h-10 w-10 items-center justify-center rounded-full border border-borde bg-superficie/70 lg:hidden">
+        <span class="relative block h-3.5 w-4.5">
+          <span
+            class="absolute left-0 block h-0.5 w-full rounded bg-blanco transition-all duration-300"
+            [class.top-0]="!abierto()"
+            [class.top-1.5]="abierto()"
+            [class.rotate-45]="abierto()"></span>
+          <span
+            class="absolute left-0 top-1.5 block h-0.5 w-full rounded bg-blanco transition-opacity duration-200"
+            [class.opacity-0]="abierto()"></span>
+          <span
+            class="absolute left-0 block h-0.5 w-full rounded bg-blanco transition-all duration-300"
+            [class.top-3]="!abierto()"
+            [class.top-1.5]="abierto()"
+            [class.-rotate-45]="abierto()"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Menú móvil -->
+  <div
+    class="fixed inset-0 top-16 z-40 origin-top bg-negro/97 backdrop-blur-2xl transition-all duration-300 lg:hidden"
+    [class.pointer-events-none]="!abierto()"
+    [class.opacity-0]="!abierto()"
+    [class.scale-y-95]="!abierto()">
+    <nav class="flex flex-col gap-1 px-5 pt-6" aria-label="Móvil">
+      @for (e of enlaces; track e.fragmento; let i = $index) {
+        <a
+          [routerLink]="['/']"
+          [fragment]="e.fragmento"
+          (click)="cerrar()"
+          class="display border-b border-borde/60 py-4 text-3xl font-bold text-blanco transition-all duration-500"
+          [class.translate-y-4]="!abierto()"
+          [class.opacity-0]="!abierto()"
+          [style.transitionDelay]="(abierto() ? 60 + i * 55 : 0) + 'ms'">
+          {{ t().nav[e.clave] }}
+        </a>
+      }
+      <a
+        [routerLink]="['/']"
+        fragment="contacto"
+        (click)="cerrar()"
+        class="mt-6 rounded-full bg-gradient-to-r from-azul to-verde px-6 py-4 text-center text-base font-bold text-blanco transition-all duration-500"
+        [class.translate-y-4]="!abierto()"
+        [class.opacity-0]="!abierto()"
+        [style.transitionDelay]="(abierto() ? 300 : 0) + 'ms'">
+        {{ t().nav.contacto }}
+      </a>
+    </nav>
+  </div>
+</header>
