@@ -32,6 +32,7 @@ Node 20 o más nuevo.
 | Ruta | Qué es | Para qué |
 |---|---|---|
 | `/` | Landing | Producto, funciones, competencias, descarga y contacto |
+| `/app/` | App Flutter | El botón **Entrar** del header apunta acá. Va con `href` y no con `routerLink`: necesita recarga completa para salir del bundle de Angular |
 | `/privacidad` · `/privacy` | Política de privacidad | **Obligatoria** en App Store Connect y Google Play Console |
 | `/eliminar-cuenta` · `/delete-account` | Eliminar tu cuenta | **Obligatoria** para Google Play (URL de borrado de cuenta) |
 | `/soporte` · `/support` | Soporte | URL de soporte de la ficha de App Store |
@@ -110,8 +111,29 @@ npm run build:todo     # compila Flutter web → public/app/ y luego Angular
 eso Flutter pide sus propios assets a la raíz del landing y no carga nada.
 
 `vercel.json` ya excluye `/app/` del rewrite del SPA, así que las rutas de la
-app Flutter no se las come el router de Angular. `public/app/` está en
-`.gitignore`: es un artefacto de build, no código.
+app Flutter no se las come el router de Angular.
+
+**`public/app/` sí se versiona** (unos 42 MB). No es lo ideal, pero el runner de
+Vercel no trae Flutter: si se ignorara, el deploy saldría sin `/app/` y el botón
+de Entrar daría 404. Cuando el tamaño moleste, la alternativa es desplegar la
+app Flutter como su propio proyecto de Vercel y cambiar el rewrite por uno
+externo — al ser rewrite y no redirect el origen no cambia, así que la sesión de
+Supabase sigue funcionando:
+
+```json
+{ "source": "/app/:ruta*", "destination": "https://yourpr-app.vercel.app/:ruta*" }
+```
+
+Dos detalles de caché que ya están resueltos en `vercel.json`:
+
+- Los archivos de Flutter **no llevan hash** en el nombre (`main.dart.js` se
+  llama igual en cada build), así que `/app/` va con `max-age=0,
+  must-revalidate`. Si se cachearan como inmutables, quien ya abrió la app se
+  quedaría con la versión vieja para siempre.
+- El build de Flutter arrastra `web/legal/` del proyecto Flutter, que son las
+  páginas legales viejas con el correo anterior. Quedarían públicas en
+  `/app/legal/`, así que hay redirects a `/privacidad` y `/soporte`. Borrarlas
+  no sirve: el siguiente `flutter build web` las repone.
 
 ---
 
