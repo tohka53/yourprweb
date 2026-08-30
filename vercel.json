@@ -22,7 +22,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!app/).*)",
+      "source": "/((?!app/|_vercel/).*)",
       "destination": "/index.html"
     }
   ],

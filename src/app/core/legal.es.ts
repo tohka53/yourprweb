@@ -49,7 +49,7 @@ export const legalEs: Legal = {
       {
         tipo: 'p',
         texto:
-          'yourpr <strong>no</strong> recoge tu ubicación, no lee tu agenda de contactos, no usa herramientas de analítica ni publicidad, y no incluye ningún SDK que te siga por otras apps o sitios web.',
+          'La app <strong>no</strong> recoge tu ubicación, no lee tu agenda de contactos, no usa herramientas de analítica ni publicidad, y no incluye ningún SDK que te siga por otras apps o sitios web. Lo que sí recoge este sitio web se explica <a href="#sitio-web">más abajo</a>.',
       },
       { tipo: 'h2', id: 'proveedores', texto: 'Si entras con Google o con Apple' },
       {
@@ -77,6 +77,19 @@ export const legalEs: Legal = {
         tipo: 'p',
         texto:
           'La base de datos y los archivos están alojados en <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a>, que a su vez usa infraestructura de Amazon Web Services. La conexión entre la app y el servidor va siempre cifrada (HTTPS).',
+      },
+      { tipo: 'h2', id: 'sitio-web', texto: 'Este sitio web' },
+      {
+        tipo: 'p',
+        texto:
+          'Todo lo de arriba describe la app. Este sitio es otra cosa y recoge dos:',
+      },
+      {
+        tipo: 'lista',
+        items: [
+          '<strong>Estadísticas de visitas</strong>, con Vercel Web Analytics. No usa cookies y no te sigue por otros sitios: solo registra qué página abriste, de dónde llegaste, el país, el navegador y el tipo de dispositivo. Para contar visitantes únicos, Vercel deriva un identificador de los datos de la petición y lo renueva a diario, así que no queda nada que apunte a ti.',
+          '<strong>Lo que escribes en el formulario de contacto</strong>: tu nombre, tu correo, el gimnasio si lo pones y tu mensaje. Viaja por <a href="https://formsubmit.co/legal" target="_blank" rel="noopener">FormSubmit</a>, un servicio que se encarga de reenviarlo a nuestro buzón, y lo usamos únicamente para responderte.',
+        ],
       },
       { tipo: 'h2', id: 'cuanto', texto: 'Cuánto tiempo los guardamos' },
       {

@@ -49,7 +49,7 @@ export const legalEn: Legal = {
       {
         tipo: 'p',
         texto:
-          'yourpr does <strong>not</strong> collect your location, does not read your contacts, uses no analytics or advertising tooling, and includes no SDK that follows you across other apps or websites.',
+          'The app does <strong>not</strong> collect your location, does not read your contacts, uses no analytics or advertising tooling, and includes no SDK that follows you across other apps or websites. What this website does collect is explained <a href="#sitio-web">further down</a>.',
       },
       { tipo: 'h2', id: 'proveedores', texto: 'If you sign in with Google or Apple' },
       {
@@ -77,6 +77,18 @@ export const legalEn: Legal = {
         tipo: 'p',
         texto:
           'The database and the files are hosted on <a href="https://supabase.com/privacy" target="_blank" rel="noopener">Supabase</a>, which in turn runs on Amazon Web Services infrastructure. The connection between the app and the server is always encrypted (HTTPS).',
+      },
+      { tipo: 'h2', id: 'sitio-web', texto: 'This website' },
+      {
+        tipo: 'p',
+        texto: 'Everything above describes the app. This website is a separate thing, and it collects two:',
+      },
+      {
+        tipo: 'lista',
+        items: [
+          '<strong>Visit statistics</strong>, through Vercel Web Analytics. It uses no cookies and does not follow you across other sites: it only records which page you opened, where you came from, the country, the browser and the device type. To count unique visitors, Vercel derives an identifier from the request data and rotates it daily, so nothing is left that points back to you.',
+          '<strong>Whatever you type into the contact form</strong>: your name, your email, the gym if you fill it in, and your message. It travels through <a href="https://formsubmit.co/legal" target="_blank" rel="noopener">FormSubmit</a>, a service that forwards it to our inbox, and we use it only to reply to you.',
+        ],
       },
       { tipo: 'h2', id: 'cuanto', texto: 'How long we keep it' },
       {
