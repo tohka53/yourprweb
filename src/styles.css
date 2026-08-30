@@ -175,6 +175,10 @@
   opacity: 1;
   transform: none;
 }
+/* La pone la directiva cuando revela sin que el navegador esté pintando. */
+.revelar.sin-transicion {
+  transition: none;
+}
 .revelar-izq  { transform: translateX(-40px); }
 .revelar-der  { transform: translateX(40px); }
 .revelar-zoom { transform: scale(0.9); }
