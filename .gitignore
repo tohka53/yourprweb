@@ -4,9 +4,6 @@
 /.angular
 npm-debug.log*
 
-# La app Flutter compilada se genera con npm run copiar-app, no se versiona
-/public/app
-
 # Editores
 .DS_Store
 /.idea
