@@ -4,6 +4,9 @@
 /.angular
 npm-debug.log*
 
+# Temporales (builds que se mueven para revisarlos fuera de la máquina)
+.tmp-*
+
 # Editores
 .DS_Store
 /.idea

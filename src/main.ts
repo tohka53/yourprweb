@@ -8,23 +8,23 @@ import { AppModule } from './app/app-module';
  * Vercel Web Analytics.
  *
  * Va aquí y no en un componente porque solo tiene que correr una vez, antes de
- * que arranque la app. El script remoto que carga `inject()` parchea
+ * que arranque la app. El script que carga `inject()` parchea
  * `history.pushState`, que es justo lo que usa el Router de Angular, así que
  * los cambios de ruta del SPA se cuentan solos: no hay que suscribirse a
  * NavigationEnd ni llamar `pageview()` a mano.
  *
- * El modo se fija con `isDevMode()` en vez de dejar el `auto` por defecto: la
- * autodetección daba `production` incluso sirviendo el build en local, y ahí
- * se pone a pedir un endpoint que no existe y ensucia la consola.
+ * Solo se inyecta en producción. En desarrollo el paquete carga un script de
+ * depuración desde va.vercel-scripts.com que no registra nada útil —los
+ * endpoints de verdad los sirve la plataforma— y encima cualquier bloqueador
+ * de anuncios lo tumba y deja un aviso en consola en cada `ng serve`.
+ * Para depurar la integración en local, quita el `if`.
  *
- * Ojo: los endpoints `/_vercel/insights/*` los sirve la propia plataforma, así
- * que esto únicamente funciona en Vercel. Y hay que habilitar Web Analytics en
- * el panel del proyecto, o los datos llegan y se descartan.
+ * En el panel de Vercel hay que tener Web Analytics habilitado para el
+ * proyecto; si no, los datos llegan y se descartan.
  */
-inyectarAnalitica({
-  framework: 'angular',
-  mode: isDevMode() ? 'development' : 'production',
-});
+if (!isDevMode()) {
+  inyectarAnalitica({ framework: 'angular' });
+}
 
 platformBrowser()
   .bootstrapModule(AppModule, { ngZoneEventCoalescing: true })
