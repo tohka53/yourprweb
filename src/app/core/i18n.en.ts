@@ -38,7 +38,7 @@ export const en: Textos = {
   },
 
   hero: {
-    insignia: 'Coming soon to the App Store and Google Play',
+    insignia: 'Now on the App Store',
     titulo1: 'Program. Compete.',
     titulo2: 'Break your PR.',
     sub: "Today's programming, your Box/Gym leaderboard and every one of your personal records in one place. No spreadsheets, no wiped whiteboards.",
@@ -129,10 +129,11 @@ export const en: Textos = {
 
   descarga: {
     etiqueta: 'Download',
-    titulo: 'Coming soon to the stores',
-    sub: 'We are wrapping up App Store and Google Play review. Leave us your email below and we will let you know the day it ships.',
+    titulo: "It's on the App Store",
+    sub: 'Download it free on your iPhone or iPad. The Android version is on its way — write to us and we will let you know the day it ships.',
     pronto: 'Coming soon',
-    ios: { arriba: 'Soon on the', abajo: 'App Store' },
+    disponible: 'Free',
+    ios: { arriba: 'Download on the', abajo: 'App Store' },
     android: { arriba: 'Soon on', abajo: 'Google Play' },
     nota: 'Run a Box/Gym and want yourpr from day one? Write to us and we will set you up in the first batch of gyms.',
     notaCta: 'Get in touch',

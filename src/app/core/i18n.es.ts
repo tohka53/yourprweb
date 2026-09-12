@@ -40,7 +40,7 @@ export const es = {
   },
 
   hero: {
-    insignia: 'Muy pronto en App Store y Google Play',
+    insignia: 'Ya disponible en el App Store',
     titulo1: 'Programa. Compite.',
     titulo2: 'Rompe tu PR.',
     sub: 'La programación del día, el ranking de tu Box/Gym y todos tus records personales en un solo lugar. Sin hojas de cálculo ni pizarras borradas.',
@@ -131,10 +131,11 @@ export const es = {
 
   descarga: {
     etiqueta: 'Descarga',
-    titulo: 'Muy pronto en las tiendas',
-    sub: 'Estamos terminando la revisión de App Store y Google Play. Déjanos tu correo abajo y te avisamos el día que salga.',
+    titulo: 'Ya está en el App Store',
+    sub: 'Descárgala gratis en tu iPhone o iPad. La versión de Android está en camino: escríbenos y te avisamos el día que salga.',
     pronto: 'Próximamente',
-    ios: { arriba: 'Pronto en el', abajo: 'App Store' },
+    disponible: 'Gratis',
+    ios: { arriba: 'Descargar en el', abajo: 'App Store' },
     android: { arriba: 'Pronto en', abajo: 'Google Play' },
     nota: '¿Tienes un Box/Gym y quieres usar yourpr desde el día uno? Escríbenos y te damos de alta para la primera camada de gimnasios.',
     notaCta: 'Escríbenos',

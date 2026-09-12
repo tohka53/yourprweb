@@ -14,15 +14,19 @@
   <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8 lg:px-8">
     <!-- Columna de texto -->
     <div>
-      <span
+      <a
         appRevelar
-        class="inline-flex items-center gap-2 rounded-full border border-amarillo/30 bg-amarillo/8 px-3.5 py-1.5 text-xs font-bold text-amarillo">
+        href="https://apps.apple.com/app/id6805577669"
+        target="_blank"
+        rel="noopener"
+        class="group inline-flex items-center gap-2 rounded-full border border-verde/30 bg-verde/8 px-3.5 py-1.5 text-xs font-bold text-verde transition-colors hover:border-verde/60 hover:bg-verde/15">
         <span class="relative isolate flex h-1.5 w-1.5">
-          <span class="absolute inline-flex h-full w-full rounded-full bg-amarillo opacity-75 animate-[latido_2.4s_ease-out_infinite]"></span>
-          <span class="relative isolate inline-flex h-1.5 w-1.5 rounded-full bg-amarillo"></span>
+          <span class="absolute inline-flex h-full w-full rounded-full bg-verde opacity-75 animate-[latido_2.4s_ease-out_infinite]"></span>
+          <span class="relative isolate inline-flex h-1.5 w-1.5 rounded-full bg-verde"></span>
         </span>
         {{ t().hero.insignia }}
-      </span>
+        <span class="transition-transform group-hover:translate-x-0.5" aria-hidden="true">→</span>
+      </a>
 
       <h1 class="display mt-6 text-[3.4rem] font-extrabold leading-[0.88] tracking-tight sm:text-7xl lg:text-[5.4rem]">
         <span appRevelar [retraso]="60" class="block text-blanco">{{ t().hero.titulo1 }}</span>
