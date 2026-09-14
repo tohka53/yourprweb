@@ -173,7 +173,7 @@ export const en: Textos = {
     privacidad: 'Privacy policy',
     eliminar: 'Delete your account',
     soporte: 'Support',
-    hechoPor: 'A product by',
+    hechoPor: 'Built by',
     derechos: 'All rights reserved.',
   },
 

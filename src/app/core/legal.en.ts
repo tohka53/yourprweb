@@ -18,7 +18,7 @@ export const legalEn: Legal = {
       { tipo: 'h2', id: 'responsable', texto: 'Who is responsible' },
       {
         tipo: 'p',
-        texto: `The data controller is <strong>Tech Solutions GT, Sociedad Anónima</strong>, the developer of yourpr. For any question about your data write to ${MAILTO}.`,
+        texto: `The data controller is <strong><a href="https://www.techsolutionsgt.dev/" target="_blank" rel="noopener">Tech Solutions GT, Sociedad Anónima</a></strong>, the developer of yourpr. For any question about your data write to ${MAILTO}.`,
       },
       { tipo: 'h2', id: 'datos', texto: 'What we store' },
       {

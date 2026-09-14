@@ -18,7 +18,7 @@ export const legalEs: Legal = {
       { tipo: 'h2', id: 'responsable', texto: 'Quién es responsable' },
       {
         tipo: 'p',
-        texto: `El responsable del tratamiento es <strong>Tech Solutions GT, Sociedad Anónima</strong>, desarrollador de yourpr. Para cualquier consulta sobre tus datos escribe a ${MAILTO}.`,
+        texto: `El responsable del tratamiento es <strong><a href="https://www.techsolutionsgt.dev/" target="_blank" rel="noopener">Tech Solutions GT, Sociedad Anónima</a></strong>, desarrollador de yourpr. Para cualquier consulta sobre tus datos escribe a ${MAILTO}.`,
       },
       { tipo: 'h2', id: 'datos', texto: 'Qué datos guardamos' },
       {

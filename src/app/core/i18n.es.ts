@@ -175,7 +175,7 @@ export const es = {
     privacidad: 'Política de privacidad',
     eliminar: 'Eliminar tu cuenta',
     soporte: 'Soporte',
-    hechoPor: 'Un producto de',
+    hechoPor: 'Desarrollado por',
     derechos: 'Todos los derechos reservados.',
   },
 
